@@ -4,7 +4,7 @@
 
 package dev.shermende.security.filter;
 
-import dev.shermende.security.token.Token;
+import dev.shermende.security.token.TokenAuthentication;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -36,7 +36,7 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
     @Override
     public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         final String token = extractToken(httpServletRequest);
-        return getAuthenticationManager().authenticate(new Token(token));
+        return getAuthenticationManager().authenticate(new TokenAuthentication(token));
     }
 
     @Override

@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class SpringSecurityFilterApplicationTests {
+class MainControllerTest {
     private static final String OK = "ok";
     private static final String HEADER = "X-TOKEN";
 
@@ -20,25 +20,13 @@ class SpringSecurityFilterApplicationTests {
     private MockMvc mockMvc;
 
     @Test
-    public void ok() throws Exception {
+    void home() throws Exception {
         this.mockMvc.perform(get("/").header(HEADER, OK))
             .andExpect(status().isOk())
             .andExpect(jsonPath("name").exists())
             .andExpect(jsonPath("name").value(OK))
             .andExpect(jsonPath("principal").exists())
             .andExpect(jsonPath("principal").value(OK));
-    }
-
-    @Test
-    public void notFound() throws Exception {
-        this.mockMvc.perform(get("/not-found").header(HEADER, OK))
-            .andExpect(status().isNotFound());
-    }
-
-    @Test
-    public void unauthorized() throws Exception {
-        this.mockMvc.perform(get("/"))
-            .andExpect(status().isUnauthorized());
     }
 
 }
