@@ -1,4 +1,4 @@
-package dev.shermende.config;
+package dev.shermende;
 
 import dev.shermende.security.filter.TokenAuthenticationFilter;
 import dev.shermende.security.provider.TokenAuthenticationProvider;
